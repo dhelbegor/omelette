@@ -1,0 +1,28 @@
+{
+  "name": "omelette",
+  "authors": [
+    "dhelbegor <dhelbegors@gmail.com>"
+  ],
+  "description": "omelette boilerplate",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "django",
+    "gulp",
+    "sass",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dhelbegor/omelette",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "apps/core/static/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}
