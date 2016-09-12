@@ -1,0 +1,6 @@
+Django
+Pillow
+django-extensions
+django-registration
+django-image-cropping
+pytz

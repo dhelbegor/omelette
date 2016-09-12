@@ -1,83 +1,70 @@
 # Omelette Boilerplate
 
-Omelette é um boilerplate que eu criei usando o template base do django para dar uma agilizada nos meus projetos, deixei a pasta `templates` com as configurações básicas como o *base.html* e a pasta includes, também criei o *local_settings* e deixei pré-configurado, a pasta `apps` foi destinada para os aplicativos.
+Omelette é um boilerplate que eu criei usando o template base do django para dar uma agilizada nos meus projetos, deixei a pasta `templates` com as configurações básicas como o *base.html* e a pasta includes, também criei a pasta *settings* e deixei pré-configurada, a pasta `apps` foi destinada para os aplicativos.
 
 #####Porque diabos Omelette?
 > *Bem, basicamente para se fazer um bom omelette precisamos apenas de ovos e os igredientes que sejam do seu agrado, por isso esse nome, aqui no caso a base(ovos) e o django, com ele em mãos basta colocar os ingredientes que deja e começar a cozinhar.*
 
 **pré-requisitos**:
 
-- [Nodejs]
+- [Docker]
 - [Python]
-- [Ruby]
+- [Virtualenv]
 
-**requisitos**:
+**requisitos adicionais**:
 
 - [Bower]
 - [Gulp]
 - [Sass]
-- [Virtualenv]
-- [Django-1.9+]
+- [Tmux]
+- [Nodejs]
+- [Ruby]
+- [Git]
+- [Vim]
 
 
-#####Como utilizar
+#####Como utilizar 
 
-Tendo em mente que você tenha o **pré-requisito e o virtualenv** instalado, inicie e ative um ambiente virtual.
+Tendo em mente que você tenha o **pré-requisitos** instalado, inicie e ative um ambiente virtual.
 
-```bash
-virtualenv -p python3 meu_ambiente
-cd meu_ambiente
-source bin/activate
-```
-
-com o ambiente criado e ativado instale o Django.
+_Atenção: o virtualenv e apenas uma instalação temporaria._
 
 ```bash
-pip install django
-pip freeze > requirements.txt
+mkdir project_folder
+cd project_folder/
+virtualenv -p python3 .venv
+source .venv/bin/activate
+```
+Instale o django
+```bash
+pip install -r requirements/virtual.pip
 ```
 
-Inicie um projeto Django usando o seguinte comando (*o uso do* `.` *no final diz para iniciar o projeto com o arquivo* `manage.py` *na raiz em que se encontra o mesmo*).
+com o ambiente criado inicie um projeto Django usando o seguinte comando (*o uso do* `.` *no final diz para iniciar o projeto com o arquivo* `manage.py` *na raiz em que se encontra o mesmo*).
 
 ```bash
-django-admin.py startproject --template=https://github.com/dhelbegor/omelette/archive/master.zip --extension=md --name=Makefile --name=local_settings.py meu_projeto .
+django-admin.py startproject --template=https://github.com/dhelbegor/omelette/archive/master.zip --extension=md --name=Makefile --name=local_settings.py my_project .
 ```
 
-#####bower
+#####docker
 
-As versões mais atuais do nodejs já vem com o npm instalado, portanto não precisamos instala-lo, para instalar o bower faça o seguinte.
-
-```
-npm install -g bower
-```
-
-Agora instale as dependências:
-
-```
-bower install
-```
-
-
-#####gulp
-
-Para utilizar o gulp basta rodar o seguinte comando logo a baixo, fazendo isso ele sera instalado globalmente:
-
-```
-npm install -g gulp
-```
-
-agora vamos instalar as dependências do gulp:
-
-```
-npm install gulp-concat gulp-minify-css gulp-sass
-```
-
-pronto, agora basta compilar o sass com o gulp e rodar o projeto (é necessário usar o `chmod +x` para dar permissão ao arquivo `manage.py`).
+Desative o ambiente virtual e exclua a pasta .venv.
 
 ```bash
-gulp
-chmod +x manage.py
-make migrate && make run
+source .venv/bin/deactivate
+rm -rf .venv
+```
+
+Agora inicie o build do docker:
+
+```
+docker build -f $(pwd)/docker/Dockerfile -t docker_name .
+```
+
+Para utilizar o container criado basta rodar o seguinte comando:
+
+```
+docker run -ti -v $(pwd)/:/root -p 8000:8000 -p 3000:3000 container_name bash
 ```
 
 #####Novas Apps
@@ -88,12 +75,14 @@ Para criar novos aplicativos use o seguinte comando:
 cd apps && ../manage.py startapp meu_app && cd ..
 ```
 
-
+[Docker]:https://www.docker.com/
 [Nodejs]:https://nodejs.org/en/
 [Python]:http://wiki.python.org.br/
 [Ruby]:https://www.ruby-lang.org/pt/
 [Bower]:http://bower.io/
 [Gulp]:http://gulpjs.com/
+[Git]:https://git-scm.com/
+[Vim]:http://www.vim.org/
 [Sass]:http://sass-lang.com/
 [Virtualenv]:https://virtualenv.readthedocs.org/en/latest/installation.html
-[Django-1.9+]:https://www.djangoproject.com/
+[Tmux]:https://tmux.github.io/
